@@ -1,0 +1,230 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import { career, profile, skills } from "../data/profile.ts";
+---
+
+<Layout title={`${profile.name} — Profile`} description={profile.bio}>
+  <main>
+    <header class="header">
+      <div class="header-inner">
+        <span class="brand">{profile.name}</span>
+        <ThemeToggle />
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>{profile.name}</h1>
+      <p class="role">{profile.role} · {profile.location}</p>
+      <p class="bio">{profile.bio}</p>
+      <ul class="links">
+        {
+          profile.links.map((l) => (
+            <li>
+              <a href={l.href} target="_blank" rel="noopener noreferrer">
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2>経歴</h2>
+      <ol class="timeline">
+        {
+          career.map((c) => (
+            <li>
+              <span class="period">{c.period}</span>
+              <div>
+                <p class="title">
+                  {c.role} @ {c.company}
+                </p>
+                <p class="desc">{c.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="block">
+      <h2>スキル</h2>
+      <div class="skills">
+        {
+          skills.map((s) => (
+            <div class="skill-card">
+              <h3>{s.category}</h3>
+              <ul>
+                {s.items.map((i) => (
+                  <li>{i}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© {new Date().getFullYear()} {profile.name}</p>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.25rem 4rem;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(180%) blur(8px);
+    -webkit-backdrop-filter: saturate(180%) blur(8px);
+    border-bottom: 1px solid var(--border);
+    margin: 0 -1.25rem 2.5rem;
+    padding: 0 1.25rem;
+    z-index: 10;
+  }
+
+  .header-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .brand {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .hero {
+    padding: 1rem 0 2.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    margin-bottom: 0.4rem;
+  }
+
+  .role {
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .bio {
+    font-size: 1.05rem;
+  }
+
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: 1.2rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .block {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .block h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  .timeline li {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+  }
+
+  .period {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .title {
+    font-weight: 600;
+    margin: 0 0 0.2rem;
+  }
+
+  .desc {
+    color: var(--muted);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+  }
+
+  .skill-card h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin: 0 0 0.6rem;
+  }
+
+  .skill-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-card li {
+    font-size: 0.9rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.15rem 0.55rem;
+  }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  @media (max-width: 540px) {
+    .timeline li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+  }
+</style>
