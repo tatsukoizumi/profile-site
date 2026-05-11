@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { profile } from "../data/profile.ts";
 
 const career = [
   {
@@ -33,7 +32,7 @@ const education = [
 ];
 ---
 
-<Layout title={`Profile — ${profile.name}`}>
+<Layout prefix="Profile">
   <h1 class="page-title">Profile</h1>
 
   <section class="block">

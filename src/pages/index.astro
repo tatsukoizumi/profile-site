@@ -2,17 +2,21 @@
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import SocialIcon from "../components/SocialIcon.astro";
-import { profile } from "../data/profile.ts";
 import icon from "../assets/icon.png";
-import locationPin from "../assets/location-pin.svg";
+
+const links = [
+  { label: "GitHub", href: "https://github.com/tatsukoizumi" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/tatsukoizumi" },
+  { label: "Zenn", href: "https://zenn.dev/tatsukoizumi" },
+];
 ---
 
-<Layout title={`${profile.name}`}>
+<Layout>
   <section class="hero">
     <Image
       class="avatar"
       src={icon}
-      alt={profile.name}
+      alt="アイコン画像"
       width={176}
       height={176}
       format="webp"
@@ -23,7 +27,7 @@ import locationPin from "../assets/location-pin.svg";
     />
     <div class="hero-text">
       <div class="name">
-        <h1>{profile.name}</h1>
+        <h1>小泉 辰徳</h1>
         <p class="supporting-text">Koizumi Tatsunori</p>
       </div>
       <p class="supporting-text meta">
@@ -64,7 +68,7 @@ import locationPin from "../assets/location-pin.svg";
 
   <ul class="links">
     {
-      profile.links.map((l) => (
+      links.map((l) => (
         <li>
           <a href={l.href} target="_blank" rel="noopener noreferrer">
             <SocialIcon name={l.label} />

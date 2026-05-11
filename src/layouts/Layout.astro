@@ -1,14 +1,15 @@
 ---
 import Nav from "../components/Nav.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
-import { profile } from "../data/profile.ts";
 import icon from "../assets/icon.png";
 
 interface Props {
-  title?: string;
+  prefix?: string;
 }
 
-const { title = profile.name } = Astro.props;
+const name = "小泉 辰徳";
+const { prefix } = Astro.props;
+const title = prefix ? `${prefix} — ${name}` : name;
 ---
 
 <!doctype html>
