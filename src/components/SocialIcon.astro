@@ -1,0 +1,43 @@
+---
+import githubLogo from "../assets/github-logo.svg?url";
+import linkedinLogo from "../assets/linkedin-logo.svg?url";
+import zennLogo from "../assets/zenn-logo.svg?url";
+
+interface Props {
+  name: string;
+  size?: number;
+}
+
+const { name, size = 18 } = Astro.props;
+
+const logos: Record<string, { src: string; invertable?: boolean }> = {
+  GitHub: { src: githubLogo, invertable: true },
+  LinkedIn: { src: linkedinLogo },
+  Zenn: { src: zennLogo },
+};
+
+const logo = logos[name];
+---
+
+{
+  logo && (
+    <img
+      src={logo.src}
+      alt=""
+      width={size}
+      height={size}
+      class:list={["logo", logo.invertable && "logo--invertable"]}
+    />
+  )
+}
+
+<style>
+  .logo {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  :global(html[data-theme="dark"]) .logo--invertable {
+    filter: invert(1);
+  }
+</style>

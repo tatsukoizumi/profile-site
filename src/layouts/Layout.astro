@@ -1,11 +1,13 @@
 ---
+import Nav from "../components/Nav.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import { profile } from "../data/profile.ts";
+
 interface Props {
   title?: string;
-  description?: string;
 }
 
-const { title = "Profile", description = "Personal profile site" } =
-  Astro.props;
+const { title = profile.name } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,7 +15,10 @@ const { title = "Profile", description = "Personal profile site" } =
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
+    <meta
+      name="description"
+      content="小泉辰徳（Koizumi Tatsunori）のプロフィールサイト"
+    />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
@@ -25,7 +30,18 @@ const { title = "Profile", description = "Personal profile site" } =
     </script>
   </head>
   <body>
-    <slot />
+    <header class="site-header">
+      <div class="site-header-inner">
+        <div class="actions">
+          <Nav />
+          <ThemeToggle />
+        </div>
+      </div>
+    </header>
+
+    <main class="site-main">
+      <slot />
+    </main>
   </body>
 </html>
 
@@ -37,6 +53,7 @@ const { title = "Profile", description = "Personal profile site" } =
     --border: #e5e7eb;
     --accent: #2563eb;
     --card: #f9fafb;
+    --fg-soft: color-mix(in srgb, var(--fg) 50%, var(--muted));
     --max-w: 720px;
     --radius: 10px;
   }
@@ -96,5 +113,66 @@ const { title = "Profile", description = "Personal profile site" } =
   ::selection {
     background: var(--accent);
     color: #fff;
+  }
+</style>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(180%) blur(8px);
+    -webkit-backdrop-filter: saturate(180%) blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+  }
+
+  .site-header-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 56px;
+    width: 100%;
+  }
+
+  .brand {
+    color: var(--fg);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+
+  .brand:hover {
+    text-decoration: none;
+    color: var(--accent);
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .site-main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  .site-footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
   }
 </style>

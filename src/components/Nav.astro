@@ -1,0 +1,53 @@
+---
+const path = Astro.url.pathname;
+const items = [
+  { href: "/", label: "Home" },
+  { href: "/profile", label: "Profile" },
+  { href: "/skills", label: "Skills" },
+];
+
+const isCurrent = (href: string) => {
+  if (href === "/") return path === "/";
+  return path === href || path === `${href}/`;
+};
+---
+
+<nav class="nav" aria-label="Primary">
+  {
+    items.map((i) => (
+      <a href={i.href} aria-current={isCurrent(i.href) ? "page" : undefined}>
+        {i.label}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .nav {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .nav a {
+    color: var(--muted);
+    font-size: 0.9rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition:
+      color 0.15s,
+      background 0.15s;
+  }
+
+  .nav a:hover {
+    color: var(--fg);
+    background: var(--card);
+    text-decoration: none;
+  }
+
+  .nav a[aria-current="page"] {
+    color: var(--fg);
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+</style>

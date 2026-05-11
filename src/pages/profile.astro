@@ -1,0 +1,132 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { profile } from "../data/profile.ts";
+
+const career = [
+  {
+    period: "2025.07 — 現在",
+    company: "フリーランス",
+    description: "web系の自社開発企業を中心に複数社で業務委託として活動",
+  },
+  {
+    period: "2021.10 — 2025.06",
+    company: "株式会社MICIN（正社員）",
+    description:
+      "新卒で入社。医療系SaaSプロダクトの開発に従事し、フロントエンドのテックリード等を経験",
+  },
+  {
+    period: "2020.10 — 2021.09",
+    company: "株式会社MICIN（インターン）",
+    description: "大学在学中に長期インターンとして勤務",
+  },
+];
+
+const education = [
+  {
+    period: "2017.04 — 2021.09",
+    school: "早稲田大学 文化構想学部",
+  },
+  {
+    period: "2014.04 — 2017.03",
+    school: "山梨県立甲府東高等学校",
+  },
+];
+---
+
+<Layout title={`Profile — ${profile.name}`}>
+  <h1 class="page-title">Profile</h1>
+
+  <section class="block">
+    <h2>Career</h2>
+    <ol class="timeline">
+      {
+        career.map((c) => (
+          <li>
+            <span class="period">{c.period}</span>
+            <div>
+              <p class="title">{c.company}</p>
+              <p class="desc">{c.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2>Education</h2>
+    <ol class="timeline">
+      {
+        education.map((e) => (
+          <li>
+            <span class="period">{e.period}</span>
+            <div>
+              <p class="title">{e.school}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+</Layout>
+
+<style>
+  .page-title {
+    font-size: 1.5rem;
+    margin: 0 0 1.6rem;
+  }
+
+  .block {
+    margin-bottom: 2.5rem;
+  }
+
+  .block:last-child {
+    margin-bottom: 0;
+  }
+
+  .block h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  .timeline li {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+  }
+
+  .period {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .title {
+    font-weight: 600;
+    margin: 0 0 0.2rem;
+  }
+
+  .desc {
+    color: var(--muted);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 540px) {
+    .timeline li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+  }
+</style>

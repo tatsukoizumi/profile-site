@@ -36,14 +36,15 @@
   </svg>
 </button>
 
-<script>
-  const btn = document.getElementById("theme-toggle");
-  btn?.addEventListener("click", () => {
-    const cur = document.documentElement.dataset.theme;
-    const next = cur === "dark" ? "light" : "dark";
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem("theme", next);
-  });
+<script is:inline>
+  document
+    .getElementById("theme-toggle")
+    ?.addEventListener("click", () => {
+      const next =
+        document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem("theme", next);
+    });
 </script>
 
 <style>

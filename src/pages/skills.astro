@@ -1,0 +1,94 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { profile } from "../data/profile.ts";
+
+const skills = [
+  {
+    category: "Languages",
+    items: ["TypeScript", "JavaScript", "HTML", "CSS", "Go", "Python", "Ruby"],
+  },
+  {
+    category: "Frameworks / Libraries",
+    items: ["React", "Next.js", "Astro", "Echo", "gqlgen", "Ruby on Rails"],
+  },
+  {
+    category: "Infra / DB",
+    items: ["AWS", "Cloudflare", "PostgreSQL", "MySQL", "Docker"],
+  },
+  {
+    category: "Tools",
+    items: [
+      "Git / GitHub",
+      "GitHub Actions",
+      "Figma",
+      "Cursor",
+      "Claude Code",
+      "Playwright",
+    ],
+  },
+];
+---
+
+<Layout title={`Skills — ${profile.name}`}>
+  <h1 class="page-title">Skills</h1>
+
+  <div class="skills">
+    {
+      skills.map((s) => (
+        <section class="skill-card">
+          <h2>{s.category}</h2>
+          <ul>
+            {s.items.map((i) => (
+              <li>{i}</li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</Layout>
+
+<style>
+  .page-title {
+    font-size: 1.5rem;
+    margin: 0 0 1.6rem;
+  }
+
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+  }
+
+  .skill-card h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin: 0 0 0.7rem;
+  }
+
+  .skill-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-card li {
+    font-size: 0.9rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.15rem 0.55rem;
+  }
+</style>
