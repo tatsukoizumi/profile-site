@@ -37,14 +37,12 @@
 </button>
 
 <script is:inline>
-  document
-    .getElementById("theme-toggle")
-    ?.addEventListener("click", () => {
-      const next =
-        document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-      document.documentElement.dataset.theme = next;
-      localStorage.setItem("theme", next);
-    });
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    const next =
+      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem("theme", next);
+  });
 </script>
 
 <style>
