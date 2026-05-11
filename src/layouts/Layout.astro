@@ -1,7 +1,6 @@
 ---
 import Nav from "../components/Nav.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
-import icon from "../assets/icon.png";
 
 interface Props {
   prefix?: string;
@@ -22,7 +21,11 @@ const title = prefix ? `${prefix} — ${name}` : name;
       content="小泉辰徳（Koizumi Tatsunori）のプロフィールサイト"
     />
     <meta name="color-scheme" content="light dark" />
-    <link rel="icon" type="image/png" href={icon.src} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>{title}</title>
     <script is:inline>
       const stored = localStorage.getItem("theme");
