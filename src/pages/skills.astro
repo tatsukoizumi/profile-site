@@ -1,28 +1,59 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const skills = [
+interface Skill {
+  name: string;
+  primary?: boolean;
+}
+
+interface SkillCategory {
+  category: string;
+  items: Skill[];
+}
+
+const skills: SkillCategory[] = [
   {
     category: "Languages",
-    items: ["TypeScript", "JavaScript", "HTML", "CSS", "Go", "Python", "Ruby"],
+    items: [
+      { name: "TypeScript", primary: true },
+      { name: "JavaScript", primary: true },
+      { name: "HTML", primary: true },
+      { name: "CSS", primary: true },
+      { name: "Go" },
+      { name: "Python" },
+      { name: "Ruby" },
+    ],
   },
   {
     category: "Frameworks / Libraries",
-    items: ["React", "Next.js", "Astro", "Echo", "gqlgen", "Ruby on Rails"],
+    items: [
+      { name: "React", primary: true },
+      { name: "Next.js", primary: true },
+      { name: "Astro" },
+      { name: "Echo" },
+      { name: "gqlgen" },
+      { name: "Ruby on Rails" },
+    ],
   },
   {
     category: "Infra / DB",
-    items: ["AWS", "Cloudflare", "PostgreSQL", "MySQL", "Docker"],
+    items: [
+      { name: "PostgreSQL" },
+      { name: "MySQL" },
+      { name: "AWS" },
+      { name: "Cloudflare" },
+      { name: "Docker" },
+    ],
   },
   {
     category: "Tools",
     items: [
-      "Git / GitHub",
-      "GitHub Actions",
-      "Figma",
-      "Cursor",
-      "Claude Code",
-      "Playwright",
+      { name: "Git / GitHub" },
+      { name: "GitHub Actions" },
+      { name: "Figma" },
+      { name: "Cursor" },
+      { name: "Claude Code" },
+      { name: "Playwright" },
     ],
   },
 ];
@@ -30,6 +61,7 @@ const skills = [
 
 <Layout prefix="Skills">
   <h1 class="page-title">Skills</h1>
+  <div class="card primary">得意👍</div>
 
   <div class="skills">
     {
@@ -38,7 +70,7 @@ const skills = [
           <h2>{s.category}</h2>
           <ul>
             {s.items.map((i) => (
-              <li>{i}</li>
+              <li class:list={[{ primary: i.primary }]}>{i.name}</li>
             ))}
           </ul>
         </section>
@@ -50,7 +82,22 @@ const skills = [
 <style>
   .page-title {
     font-size: 1.5rem;
-    margin: 0 0 1.6rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    width: fit-content;
+    padding: 0.3rem 0.8rem;
+    margin: 0 0 1.2rem;
+
+  }
+
+  .primary {
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 500;
   }
 
   .skills {
