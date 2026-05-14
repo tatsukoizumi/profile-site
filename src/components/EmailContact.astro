@@ -1,0 +1,125 @@
+---
+interface Props {
+  email: string;
+}
+
+const { email } = Astro.props;
+---
+
+<div class="contact">
+  <a class="contact-email" href={`mailto:${email}`}>{email}</a>
+  <button
+    type="button"
+    class="contact-copy"
+    data-copy={email}
+    aria-label="メールアドレスをコピー"
+  >
+    <svg
+      class="icon-copy"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+    <svg
+      class="icon-check"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+  </button>
+</div>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>(".contact-copy")
+    .forEach((btn) => {
+      let timer: number | undefined;
+      btn.addEventListener("click", async () => {
+        const text = btn.dataset.copy;
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.dataset.copied = "true";
+          if (timer) window.clearTimeout(timer);
+          timer = window.setTimeout(() => {
+            delete btn.dataset.copied;
+          }, 1500);
+        } catch {
+          /* ignore */
+        }
+      });
+    });
+</script>
+
+<style>
+  .contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.875rem;
+  }
+
+  .contact-email {
+    color: var(--fg-soft);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .contact-email:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .contact-copy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 4px;
+    transition:
+      color 0.15s,
+      background 0.15s;
+  }
+
+  .contact-copy:hover {
+    color: var(--accent);
+    background: var(--card);
+  }
+
+  .contact-copy .icon-check {
+    display: none;
+  }
+
+  .contact-copy[data-copied="true"] {
+    color: var(--accent);
+  }
+
+  .contact-copy[data-copied="true"] .icon-copy {
+    display: none;
+  }
+
+  .contact-copy[data-copied="true"] .icon-check {
+    display: block;
+  }
+</style>

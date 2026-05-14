@@ -2,7 +2,10 @@
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import SocialIcon from "../components/SocialIcon.astro";
+import EmailContact from "../components/EmailContact.astro";
 import icon from "../assets/icon.png";
+
+const email = "contact@tatsukoizumi.dev";
 
 const links = [
   { label: "GitHub", href: "https://github.com/tatsukoizumi" },
@@ -65,6 +68,10 @@ const links = [
     <br />
     東京と山梨の自宅を行き来する生活を送っています。
   </p>
+
+  <div class="contact-wrapper">
+    <EmailContact email={email} />
+  </div>
 
   <ul class="links">
     {
@@ -139,6 +146,10 @@ const links = [
     font-size: 0.875rem;
     color: var(--fg-soft);
     margin: 0 0 1.4rem;
+  }
+
+  .contact-wrapper {
+    margin: 0 0 1rem;
   }
 
   .links {
