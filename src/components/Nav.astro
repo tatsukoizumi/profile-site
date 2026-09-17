@@ -13,13 +13,11 @@ const isCurrent = (href: string) => {
 ---
 
 <nav class="nav" aria-label="Primary">
-  {
-    items.map((i) => (
-      <a href={i.href} aria-current={isCurrent(i.href) ? "page" : undefined}>
-        {i.label}
-      </a>
-    ))
-  }
+  {items.map((i) => (
+    <a href={i.href} aria-current={isCurrent(i.href) ? "page" : undefined}>
+      {i.label}
+    </a>
+  ))}
 </nav>
 
 <style>

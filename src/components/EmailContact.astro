@@ -7,7 +7,9 @@ const { email } = Astro.props;
 ---
 
 <div class="contact">
-  <a class="contact-email" href={`mailto:${email}`}>{email}</a>
+  <a class="contact-email" href={`mailto:${email}`}>
+    {email}
+  </a>
   <button
     type="button"
     class="contact-copy"

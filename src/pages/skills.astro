@@ -64,18 +64,16 @@ const skills: SkillCategory[] = [
   <div class="card primary">得意👍</div>
 
   <div class="skills">
-    {
-      skills.map((s) => (
-        <section class="skill-card">
-          <h2>{s.category}</h2>
-          <ul>
-            {s.items.map((i) => (
-              <li class:list={[{ primary: i.primary }]}>{i.name}</li>
-            ))}
-          </ul>
-        </section>
-      ))
-    }
+    {skills.map((s) => (
+      <section class="skill-card">
+        <h2>{s.category}</h2>
+        <ul>
+          {s.items.map((i) => (
+            <li class:list={[{ primary: i.primary }]}>{i.name}</li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </div>
 </Layout>
 
