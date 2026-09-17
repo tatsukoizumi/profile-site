@@ -48,13 +48,15 @@ const links = [
               stroke="currentColor"
               stroke-width="2"
               stroke-linecap="round"
-              stroke-linejoin="round"></path>
+              stroke-linejoin="round"
+            ></path>
             <path
               d="M12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12Z"
               stroke="currentColor"
               stroke-width="2"
               stroke-linecap="round"
-              stroke-linejoin="round"></path>
+              stroke-linejoin="round"
+            ></path>
           </svg>
           <span>山梨⇆東京</span>
         </span>
@@ -64,7 +66,8 @@ const links = [
   <p class="bio">
     フリーランスのソフトウェアエンジニア。
     <br />
-    Webアプリの開発全般に対応可能で、フロントエンドや UI/UX の作り込みを得意としています。
+    Webアプリの開発全般に対応可能で、フロントエンドや UI/UX
+    の作り込みを得意としています。
     <br />
     東京と山梨の自宅を行き来する生活を送っています。
   </p>
@@ -74,16 +77,14 @@ const links = [
   </div>
 
   <ul class="links">
-    {
-      links.map((l) => (
-        <li>
-          <a href={l.href} target="_blank" rel="noopener noreferrer">
-            <SocialIcon name={l.label} />
-            <span>{l.label}</span>
-          </a>
-        </li>
-      ))
-    }
+    {links.map((l) => (
+      <li>
+        <a href={l.href} target="_blank" rel="noopener noreferrer">
+          <SocialIcon name={l.label} />
+          <span>{l.label}</span>
+        </a>
+      </li>
+    ))}
   </ul>
 </Layout>
 

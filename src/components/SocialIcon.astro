@@ -19,17 +19,15 @@ const logos: Record<string, { src: string; invertable?: boolean }> = {
 const logo = logos[name];
 ---
 
-{
-  logo && (
-    <img
-      src={logo.src}
-      alt=""
-      width={size}
-      height={size}
-      class:list={["logo", logo.invertable && "logo--invertable"]}
-    />
-  )
-}
+{logo && (
+  <img
+    src={logo.src}
+    alt=""
+    width={size}
+    height={size}
+    class:list={["logo", logo.invertable && "logo--invertable"]}
+  />
+)}
 
 <style>
   .logo {

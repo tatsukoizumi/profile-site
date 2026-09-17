@@ -38,33 +38,29 @@ const education = [
   <section class="block">
     <h2>Career</h2>
     <ol class="timeline">
-      {
-        career.map((c) => (
-          <li>
-            <span class="period">{c.period}</span>
-            <div>
-              <p class="title">{c.company}</p>
-              <p class="desc">{c.description}</p>
-            </div>
-          </li>
-        ))
-      }
+      {career.map((c) => (
+        <li>
+          <span class="period">{c.period}</span>
+          <div>
+            <p class="title">{c.company}</p>
+            <p class="desc">{c.description}</p>
+          </div>
+        </li>
+      ))}
     </ol>
   </section>
 
   <section class="block">
     <h2>Education</h2>
     <ol class="timeline">
-      {
-        education.map((e) => (
-          <li>
-            <span class="period">{e.period}</span>
-            <div>
-              <p class="title">{e.school}</p>
-            </div>
-          </li>
-        ))
-      }
+      {education.map((e) => (
+        <li>
+          <span class="period">{e.period}</span>
+          <div>
+            <p class="title">{e.school}</p>
+          </div>
+        </li>
+      ))}
     </ol>
   </section>
 </Layout>
